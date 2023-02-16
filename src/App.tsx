@@ -19,13 +19,47 @@ import {
 } from 'react-native';
 
 import {
-  Colors,
+  Colors, ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 function HomeScreen() {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
+
+  return (
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      />
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        }}>
+        <Button
+          onPress={()=>{}}
+          title="Connect"
+          color="#841584"
+          accessibilityLabel="Connect Skateboard to Bluetooth"
+        />
+        <Button
+          onPress={()=>{}}
+          title="Start"
+          color="#841584"
+          accessibilityLabel="Start ride"
+        />
+      </View>
+    </SafeAreaView>
+  );
+}
+
+function SettingsScreen() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -45,29 +79,17 @@ function HomeScreen() {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Button
-            onPress={()=>{}}
-            title="Connect"
-            color="#841584"
-            accessibilityLabel="Connect Skateboard to Bluetooth"
-          />
-          <Button
-            onPress={()=>{}}
-            title="Start"
-            color="#841584"
-            accessibilityLabel="Start ride"
+          <Section 
+            title="Location Tracking"
+            clickHandler={()=>{console.log("hi")}}
+          />   
+          <Section 
+            title="Imperial Units"
+            clickHandler={()=>{}}
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
+    </SafeAreaView>    
   );
 }
 
@@ -84,11 +106,13 @@ const Tab = createBottomTabNavigator();
 
 type SectionProps = PropsWithChildren<{
   title: string;
+  clickHandler: Function;
 }>;
 
-function Section({children, title}: SectionProps): JSX.Element {
+function Section({children, title, clickHandler}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
+    
     <View style={styles.sectionContainer}>
       <Text
         style={[
@@ -99,15 +123,12 @@ function Section({children, title}: SectionProps): JSX.Element {
         ]}>
         {title}
       </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+      <Button
+        onPress={() => clickHandler}
+        title="On"
+        color="#841584"
+        accessibilityLabel="Connect Skateboard to Bluetooth"
+      />
     </View>
   );
 }
@@ -128,6 +149,8 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+    flexDirection:'row', 
+
   },
   sectionTitle: {
     fontSize: 24,
@@ -138,6 +161,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
   },
+
   highlight: {
     fontWeight: '700',
   },
