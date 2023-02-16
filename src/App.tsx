@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   Button,
@@ -81,7 +81,7 @@ function SettingsScreen() {
           }}>
           <Section 
             title="Location Tracking"
-            clickHandler={()=>{console.log("hi")}}
+            clickHandler={()=>{}}
           />   
           <Section 
             title="Imperial Units"
@@ -111,8 +111,9 @@ type SectionProps = PropsWithChildren<{
 
 function Section({children, title, clickHandler}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const [onStatus, setOnStatus] = useState(true);
+
   return (
-    
     <View style={styles.sectionContainer}>
       <Text
         style={[
@@ -124,8 +125,11 @@ function Section({children, title, clickHandler}: SectionProps): JSX.Element {
         {title}
       </Text>
       <Button
-        onPress={() => clickHandler}
-        title="On"
+        onPress={() => {
+          setOnStatus(!onStatus)
+          clickHandler()
+        }}
+        title= {onStatus ? "on" : "off"} 
         color="#841584"
         accessibilityLabel="Connect Skateboard to Bluetooth"
       />
@@ -150,7 +154,6 @@ const styles = StyleSheet.create({
     marginTop: 32,
     paddingHorizontal: 24,
     flexDirection:'row', 
-
   },
   sectionTitle: {
     fontSize: 24,
