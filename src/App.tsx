@@ -13,16 +13,16 @@ import StatisticsScreen from './Statistics';
 
 const Tab = createBottomTabNavigator();
 
-function App(): JSX.Element {
+const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Ride" component={RideScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
         <Tab.Screen name="Statistics" component={StatisticsScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
+    </NavigationContainer>  
   );
-}
+};
 
 export default App;
