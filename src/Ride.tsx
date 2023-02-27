@@ -25,6 +25,18 @@ function RideScreen() {
         }}>
         <Button
           onPress={()=>{}}
+          title="Battery"
+          color="#841584"
+          accessibilityLabel="Show battery"
+        />
+        <Button
+          onPress={()=>{}}
+          title="Headlights"
+          color="#841584"
+          accessibilityLabel="Turn on Headlights"
+        />
+         <Button
+          onPress={()=>{}}
           title="Connect"
           color="#841584"
           accessibilityLabel="Connect Skateboard to Bluetooth"
