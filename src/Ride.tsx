@@ -3,7 +3,9 @@ import { SafeAreaView, useColorScheme, StatusBar, ScrollView, View, Button, Pres
 import { useState, useEffect } from "react";
 
 
+
 function RideScreen() {
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -64,7 +66,7 @@ function RideScreen() {
           }}
           style={({pressed}) => [
             {
-              backgroundColor: pressed ? 'rgb(230, 0 ,0)' :'rgb(255, 0, 0)'
+              backgroundColor: pressed ? 'rgb(0, 230 ,0)' :'rgb(0, 255, 0)'
             },
             styles.wrapperCustom,
           ]}>
@@ -91,7 +93,7 @@ function RideScreen() {
           }}
           style={({pressed}) => [
             {
-              backgroundColor: pressed ? 'rgb(0, 230 ,0)' :'rgb(0, 255, 0)'
+              backgroundColor: pressed ? 'rgb(230, 0 ,0)' :'rgb(255, 0, 0)'
             },
             styles.wrapperCustom,
           ]}>
